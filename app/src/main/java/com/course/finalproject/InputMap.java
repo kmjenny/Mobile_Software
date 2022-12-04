@@ -2,7 +2,12 @@ package com.course.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,9 +19,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
 public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private TextView searchBox;
+    private TextView locationText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +34,50 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        searchBox = findViewById(R.id.Search);
+        locationText = findViewById(R.id.locationText);
+        Button searchButton = findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String searchText = searchBox.getText().toString();
+
+                Geocoder geocoder = new Geocoder(getBaseContext());
+                List<Address> addresses = null;
+
+                try {
+                    addresses = geocoder.getFromLocationName(searchText, 3);
+                    if (addresses != null && !addresses.equals(" ")) {
+                        search(addresses);
+                    }
+                } catch(Exception e) {
+
+                }
+            }
+        });
+    }
+
+    protected void search(List<Address> addresses) {
+        Address address = addresses.get(0);
+        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+        String addressText = String.format(
+                "%s, %s",
+                address.getMaxAddressLineIndex() > 0 ? address
+                        .getAddressLine(0) : " ", address.getFeatureName());
+
+        locationText.setVisibility(View.VISIBLE);
+        locationText.setText("Latitude" + address.getLatitude() + "Longitude" + address.getLongitude() + "\n" + addressText);
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title(addressText);
+
+        mMap.clear();
+        mMap.addMarker(markerOptions);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 
     @Override
