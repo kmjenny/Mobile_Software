@@ -76,37 +76,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cheese" />
 
-    <EditText
-        android:id="@+id/editTextDate"
+    <TextView
+        android:id="@+id/Date"
         android:layout_width="280dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="225dp"
+        android:layout_marginBottom="235dp"
         android:backgroundTint="#C3A17F"
         android:ems="10"
         android:inputType="date"
         android:minHeight="48dp"
         android:text="Date"
         android:textColor="#C3A17F"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6" />
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
-        android:id="@+id/editTextTime"
+    <TextView
+        android:id="@+id/Time"
         android:layout_width="280dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="180dp"
         android:backgroundTint="#C3A17F"
         android:ems="10"
         android:inputType="time"
         android:minHeight="48dp"
         android:text="Time"
         android:textColor="#C3A17F"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -125,7 +129,7 @@
         android:layout_width="42dp"
         android:layout_height="63dp"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:srcCompat="@drawable/potato" />
@@ -135,7 +139,7 @@
         android:layout_width="278dp"
         android:layout_height="79dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/review_rec"
         android:backgroundTint="#F9E6D4"
         android:ems="10"
@@ -143,7 +147,7 @@
         android:inputType="textMultiLine"
         android:text="  Review"
         android:textColor="#C3A17F"
-        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintBottom_toTopOf="@+id/Date"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -164,5 +168,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <View
+        android:layout_width="280dp"
+        android:layout_height="3px"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="#C3A17F"
+        app:layout_constraintBottom_toTopOf="@+id/Time"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:layout_width="280dp"
+        android:layout_height="3px"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="180dp"
+        android:background="#C3A17F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
