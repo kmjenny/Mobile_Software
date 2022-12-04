@@ -30,9 +30,17 @@ import java.util.Calendar;
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
 
+    private TextView name;
+    private TextView ammount;
+    private TextView review;
+    private TextView places;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Calendar c = Calendar.getInstance();
+        name = findViewById(R.id.Name);
+        ammount = findViewById(R.id.Ammount);
+        review = findViewById(R.id.Review);
 
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
@@ -48,6 +56,15 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
+                startActivity(intent);
+            }
+        });
+
+        places = findViewById(R.id.Place);
+        places.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), InputMap.class);
                 startActivity(intent);
             }
         });
