@@ -113,7 +113,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/main_image"
         android:layout_width="388dp"
         android:layout_height="205dp"
         android:layout_marginStart="11dp"
