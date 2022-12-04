@@ -12,7 +12,7 @@
         android:layout_width="55dp"
         android:layout_height="51dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         android:layout_marginBottom="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="241dp"
+        android:layout_marginTop="261dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="445dp"
         android:backgroundTint="#C3A17F"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="398dp"
+        android:layout_marginBottom="378dp"
         android:backgroundTint="#C3A17F"
         android:ems="10"
         android:inputType="number"
@@ -55,5 +55,114 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="58dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/taco" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="61dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="225dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cheese" />
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="225dp"
+        android:backgroundTint="#C3A17F"
+        android:ems="10"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:text="Date"
+        android:textColor="#C3A17F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="170dp"
+        android:backgroundTint="#C3A17F"
+        android:ems="10"
+        android:inputType="time"
+        android:minHeight="48dp"
+        android:text="Time"
+        android:textColor="#C3A17F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="388dp"
+        android:layout_height="205dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_rec" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="42dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:srcCompat="@drawable/potato" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine2"
+        android:layout_width="278dp"
+        android:layout_height="79dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/review_rec"
+        android:backgroundTint="#F9E6D4"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:text="  Review"
+        android:textColor="#C3A17F"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="178dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/round_button"
+        android:text="INPUT THE MEAL"
+
+        android:textColor="#795548"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.997"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
