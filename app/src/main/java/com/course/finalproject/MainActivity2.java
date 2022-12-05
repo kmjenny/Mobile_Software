@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -34,6 +35,10 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView ammount;
     private TextView review;
     private TextView places;
+    private String place;
+
+    private final String NAME = "";
+    private String name2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +65,19 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        places = findViewById(R.id.Place);
-        places.setOnClickListener(new View.OnClickListener() {
+        Button b3 = (Button)findViewById(R.id.button3);
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), InputMap.class);
                 startActivity(intent);
             }
         });
+
+        Intent intent2 = getIntent();
+        place = intent2.getStringExtra("place");
+        places = findViewById(R.id.Place);
+        places.setText(place);
 
         TextView date = (TextView) findViewById(R.id.Date);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -112,6 +122,19 @@ public class MainActivity2 extends AppCompatActivity {
             launcher.launch(intent);
         });
     }
+
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState){
+//        outState.putString(NAME,name.getText().toString());
+//        super.onSaveInstanceState(outState);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
+//        super.onRestoreInstanceState(savedInstanceState);
+//        name2 = savedInstanceState.getString(NAME);
+//        name.setText(name2);
+//    }
 
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>()

@@ -2,9 +2,12 @@ package com.course.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
     private TextView searchBox;
     private TextView locationText;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View v){
                 String searchText = searchBox.getText().toString();
+                intent.putExtra("place", searchText);
 
                 Geocoder geocoder = new Geocoder(getBaseContext());
                 List<Address> addresses = null;
@@ -54,6 +59,17 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
                 } catch(Exception e) {
 
                 }
+            }
+        });
+
+//        intent.putExtra("place", "아무값");
+
+        intent = new Intent(InputMap.this, MainActivity2.class);
+        Button inputButton = findViewById(R.id.input_button);
+        inputButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
             }
         });
     }
@@ -69,6 +85,7 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
 
         locationText.setVisibility(View.VISIBLE);
         locationText.setText("Latitude" + address.getLatitude() + "Longitude" + address.getLongitude() + "\n" + addressText);
+
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
@@ -91,14 +108,14 @@ public class InputMap extends AppCompatActivity implements OnMapReadyCallback {
 
     public void oneMarker() {
         // 서울 여의도에 대한 위치 설정
-        LatLng seoul = new LatLng(37.52487, 126.92723);
+        LatLng seoul = new LatLng(37.5582876, 127.00016710000001);
 
         // 구글맵에 표시할 마커에 대한 옵션 설정
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions
                 .position(seoul)
                 .title("원하는 위치(위도, 경도)에 마커를 표시했습니다")
-                .snippet("여기는 여의도입니다")
+                .snippet("여기는 동국대입니다")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
                 .alpha(0.5f); // 알파는 좌표의 투명도
 

@@ -17,6 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333"
         app:srcCompat="@drawable/hamburger" />
 
     <EditText
@@ -31,8 +32,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Name"
-        android:textColor="#C3A17F"
+        android:hint="Name"
+        android:textColorHint="#C3A17F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -49,8 +50,8 @@
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
-        android:text="Ammount"
-        android:textColor="#C3A17F"
+        android:hint="Ammount"
+        android:textColorHint="#C3A17F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +62,7 @@
         android:layout_width="58dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:srcCompat="@drawable/taco" />
@@ -71,7 +72,7 @@
         android:layout_width="61dp"
         android:layout_height="51dp"
         android:layout_marginStart="30dp"
-        android:layout_marginBottom="225dp"
+        android:layout_marginBottom="215dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/cheese" />
@@ -142,14 +143,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_rec" />
+        app:srcCompat="@drawable/inputimage" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="42dp"
         android:layout_height="63dp"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:srcCompat="@drawable/potato" />
@@ -165,8 +166,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        android:text="  Review"
-        android:textColor="#C3A17F"
+        android:hint="  Review"
+        android:textColorHint="#C3A17F"
         app:layout_constraintBottom_toTopOf="@+id/Date"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -187,6 +188,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_button"
+        android:text="INPUT THE PLACE"
+
+        android:textColor="#795548"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.891"
         tools:ignore="TouchTargetSizeCheck" />
 
     <View
