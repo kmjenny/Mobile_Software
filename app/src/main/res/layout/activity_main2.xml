@@ -175,11 +175,32 @@
         android:id="@+id/button2"
         android:layout_width="178dp"
         android:layout_height="37dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/round_button"
-        android:text="INPUT THE MEAL"
 
+        android:text="INPUT THE MEAL"
+        android:textColor="#795548"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.997"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_next"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_button"
+
+        android:text="NEXT"
         android:textColor="#795548"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -188,25 +209,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.997"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
-        android:layout_width="100dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/round_button"
-        android:text="INPUT THE PLACE"
-
-        android:textColor="#795548"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891"
         tools:ignore="TouchTargetSizeCheck" />
 
     <View

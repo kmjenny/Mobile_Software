@@ -15,9 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
+        <provider
+            android:name=".MyContentProvider"
+            android:authorities="com.course.finalproject.MyContentProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCo6NNfPEUvoIysEwnrvXTRl3XW1z2y9JM"/>
+            android:value="AIzaSyCo6NNfPEUvoIysEwnrvXTRl3XW1z2y9JM" />
 
         <activity
             android:name=".InputMap"

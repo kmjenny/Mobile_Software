@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -35,7 +37,8 @@ public class MainActivity2 extends AppCompatActivity {
     private TextView ammount;
     private TextView review;
     private TextView places;
-    private String place;
+    private TextView date;
+    private TextView time;
 
     private final String NAME = "";
     private String name2;
@@ -60,26 +63,29 @@ public class MainActivity2 extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+
+            }
+        });
+
+        Button next = (Button)findViewById(R.id.button_next);
+        next.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
                 Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
                 startActivity(intent);
             }
         });
 
-        Button b3 = (Button)findViewById(R.id.button3);
-        b3.setOnClickListener(new View.OnClickListener() {
+        places = (TextView)findViewById(R.id.Place);
+        places.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), InputMap.class);
-                startActivity(intent);
+                Intent intent = new Intent(MainActivity2.this, InputMap.class);
+                startActivityForResult(intent,3000);
             }
         });
 
-        Intent intent2 = getIntent();
-        place = intent2.getStringExtra("place");
-        places = findViewById(R.id.Place);
-        places.setText(place);
-
-        TextView date = (TextView) findViewById(R.id.Date);
+        date = (TextView) findViewById(R.id.Date);
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -96,7 +102,7 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        TextView time = (TextView)findViewById(R.id.Time);
+        time = (TextView)findViewById(R.id.Time);
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
@@ -121,6 +127,31 @@ public class MainActivity2 extends AppCompatActivity {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             launcher.launch(intent);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case 3000:
+                    places.setText(data.getStringExtra("place"));
+                    break;
+            }
+        }
+    }
+
+    public void addMeal(View view) {
+        ContentValues addValues = new ContentValues();
+        addValues.put(MyContentProvider.NAME,name.getText().toString());
+        addValues.put(MyContentProvider.AMMOUNT,ammount.getText().toString());
+        addValues.put(MyContentProvider.REVIEW,review.getText().toString());
+        addValues.put(MyContentProvider.PLACE,places.getText().toString());
+        addValues.put(MyContentProvider.DATE,date.getText().toString());
+        addValues.put(MyContentProvider.TIME,time.getText().toString());
+
+        getContentResolver().insert(MyContentProvider.CONTENT_URI, addValues);
+
     }
 
 //    @Override
