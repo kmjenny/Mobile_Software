@@ -9,12 +9,15 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,33 +25,69 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity2 extends AppCompatActivity {
     ImageView imageView;
+    UserDatabaseHelper userDatabaseHelper = new UserDatabaseHelper(this);
+    SQLiteDatabase sqlDB;
 
-    private TextView name;
-    private TextView ammount;
-    private TextView review;
-    private TextView places;
-    private TextView date;
-    private TextView time;
+    EditText name;
+    EditText amount;
+    EditText review;
+    TextView places;
+    TextView date;
+    TextView time;
+    public static String na;
+    public static int am;
+    public static double calory;
+    meal ml = new meal();
 
-    private final String NAME = "";
-    private String name2;
+    private void readData(String name){
+        InputStream is = getResources().openRawResource(R.raw.mealdb);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, StandardCharsets.UTF_8)
+        );
+        String line;
+        try{
+            reader.readLine();
 
+            while ((line = reader.readLine()) != null){
+                String[] tokens = line.split(",");
+
+                if (tokens[0].equals(name)){
+                    ml.setName(tokens[0]);
+                    ml.setCar(Double.parseDouble(tokens[1]));
+                }
+            }
+
+        } catch (IOException e) {
+            Log.d("MyActivity", "Error reading data file on line");
+            e.printStackTrace();
+        }
+
+    }
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Calendar c = Calendar.getInstance();
-        name = findViewById(R.id.Name);
-        ammount = findViewById(R.id.Ammount);
-        review = findViewById(R.id.Review);
 
         int mYear = c.get(Calendar.YEAR);
         int mMonth = c.get(Calendar.MONTH);
@@ -59,22 +98,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Button b2 = (Button)findViewById(R.id.button2);
-        b2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-
-            }
-        });
-
         Button next = (Button)findViewById(R.id.button_next);
-        next.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), MainActivity3.class);
-                startActivity(intent);
-            }
-        });
 
         places = (TextView)findViewById(R.id.Place);
         places.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +130,7 @@ public class MainActivity2 extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                time.setText(String.valueOf(i+":"+i1));
+                time.setText(String.valueOf(i+" : "+i1));
             }
         }, mHour, mMinute, false);
 
@@ -127,6 +151,30 @@ public class MainActivity2 extends AppCompatActivity {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             launcher.launch(intent);
         });
+
+        name = (EditText) findViewById(R.id.Name);
+        amount = (EditText) findViewById(R.id.Amount);
+        review = (EditText) findViewById(R.id.Review);
+
+        next.setOnClickListener(view -> {
+            Intent intent2 = new Intent(MainActivity2.this, MonthList.class);
+
+            String name = this.name.getText().toString();
+            String amount = this.amount.getText().toString();
+            String date = this.date.getText().toString();
+            String review = this.review.getText().toString();
+            String place = this.places.getText().toString();
+            String time = this.time.getText().toString();
+
+            am = Integer.parseInt(amount);
+            readData(name);
+            this.calory=ml.getCar();
+
+            sqlDB = userDatabaseHelper.getWritableDatabase();
+            sqlDB.execSQL("INSERT INTO meallist VALUES (NULL,'" + date + "','" + time + "' , '" + name + "' , '" + am + "' , '" + calory*am + "' , '" + place + "', '" + review + "');");
+            sqlDB.close();
+            startActivity(intent2);
+        });
     }
 
     @Override
@@ -140,32 +188,6 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }
     }
-
-    public void addMeal(View view) {
-        ContentValues addValues = new ContentValues();
-        addValues.put(MyContentProvider.NAME,name.getText().toString());
-        addValues.put(MyContentProvider.AMMOUNT,ammount.getText().toString());
-        addValues.put(MyContentProvider.REVIEW,review.getText().toString());
-        addValues.put(MyContentProvider.PLACE,places.getText().toString());
-        addValues.put(MyContentProvider.DATE,date.getText().toString());
-        addValues.put(MyContentProvider.TIME,time.getText().toString());
-
-        getContentResolver().insert(MyContentProvider.CONTENT_URI, addValues);
-
-    }
-
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState){
-//        outState.putString(NAME,name.getText().toString());
-//        super.onSaveInstanceState(outState);
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
-//        super.onRestoreInstanceState(savedInstanceState);
-//        name2 = savedInstanceState.getString(NAME);
-//        name.setText(name2);
-//    }
 
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>()

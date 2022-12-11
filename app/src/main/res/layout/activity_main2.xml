@@ -34,13 +34,14 @@
         android:minHeight="48dp"
         android:hint="Name"
         android:textColorHint="#C3A17F"
+        android:textColor="#C3A17F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/Ammount"
+        android:id="@+id/Amount"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
@@ -50,7 +51,8 @@
         android:ems="10"
         android:inputType="number"
         android:minHeight="48dp"
-        android:hint="Ammount"
+        android:hint="Amount"
+        android:textColor="#C3A17F"
         android:textColorHint="#C3A17F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,29 +169,10 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:hint="  Review"
+        android:textColor="#C3A17F"
         android:textColorHint="#C3A17F"
         app:layout_constraintBottom_toTopOf="@+id/Date"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
-        android:layout_width="178dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round_button"
-
-        android:text="INPUT THE MEAL"
-        android:textColor="#795548"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.997"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_next"
