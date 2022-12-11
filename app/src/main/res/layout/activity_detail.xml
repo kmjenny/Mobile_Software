@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFCF7"
+    android:background="#00FFFFFF"
     tools:context=".Detail">
 
     <View
@@ -73,11 +73,11 @@
 
         <TextView
             android:id="@+id/name"
-            android:gravity="right"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Name"
             android:textColor="#C3A17F"
@@ -124,11 +124,11 @@
 
         <TextView
             android:id="@+id/amount"
-            android:gravity="right"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Amount"
             android:textColor="#C3A17F"
@@ -163,7 +163,7 @@
             android:layout_width="314dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="7dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             android:letterSpacing="0.1"
@@ -202,11 +202,11 @@
 
         <TextView
             android:id="@+id/date"
-            android:gravity="right"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Date"
             android:textColor="#C3A17F"
@@ -253,11 +253,11 @@
 
         <TextView
             android:id="@+id/time"
-            android:gravity="right"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Time"
             android:textColor="#C3A17F"
@@ -287,7 +287,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView4">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
@@ -304,11 +304,11 @@
 
         <TextView
             android:id="@+id/place"
-            android:gravity="right"
-            android:layout_width="180dp"
+            android:layout_width="230dp"
             android:layout_height="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Place"
             android:textColor="#C3A17F"
@@ -357,10 +357,10 @@
         <TextView
             android:id="@+id/calories"
             android:layout_width="180dp"
-            android:gravity="right"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
+            android:gravity="right"
             android:letterSpacing="0.1"
             android:text="Calories"
             android:textColor="#C3A17F"
@@ -378,5 +378,18 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="36dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="26dp"
+
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/return_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

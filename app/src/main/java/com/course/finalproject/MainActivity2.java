@@ -100,6 +100,15 @@ public class MainActivity2 extends AppCompatActivity {
 
         Button next = (Button)findViewById(R.id.button_next);
 
+        Button list = (Button)findViewById(R.id.button_list);
+        list.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity2.this, MonthList.class);
+                startActivity(intent);
+            }
+        });
+
         places = (TextView)findViewById(R.id.Place);
         places.setOnClickListener(new View.OnClickListener() {
             @Override

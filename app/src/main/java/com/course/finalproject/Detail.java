@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -34,7 +37,15 @@ public class Detail extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id",0);
-        Log.v("id값",id.toString());
+
+        ImageButton b1 = (ImageButton) findViewById(R.id.imageButton);
+        b1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(Detail.this, MonthList.class);
+                startActivity(intent);
+            }
+        });
 
         userDatabaseHelper = new UserDatabaseHelper(this);
         sqlDB = userDatabaseHelper.getReadableDatabase();
@@ -83,10 +94,11 @@ public class Detail extends AppCompatActivity {
         }
         size = 0;
         for(String temp : cal){
-            this.calories.setText(temp);
+            this.calories.setText(temp+"kcal");
         }
         size = 0;
         for(String temp : place){
+            temp = temp.substring(temp.indexOf(" ")+1);
             this.place.setText(temp);
         }
         size = 0;

@@ -5,11 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import java.time.Month;
 import java.util.ArrayList;
 
 public class MonthList extends AppCompatActivity {
@@ -18,7 +24,6 @@ public class MonthList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager myLayoutManager;
 
-    CalendarView calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,24 @@ public class MonthList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         myLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(myLayoutManager);
+
+        Button month = (Button) findViewById(R.id.button1);
+        month.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MonthList.this, OneMonth.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton add = (ImageButton) findViewById(R.id.imageButton);
+        add.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MonthList.this, MainActivity2.class);
+                startActivity(intent);
+            }
+        });
 
         userDatabaseHelper = new UserDatabaseHelper(this);
         sqlDB = userDatabaseHelper.getReadableDatabase();
