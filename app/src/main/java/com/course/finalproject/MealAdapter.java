@@ -1,5 +1,6 @@
 package com.course.finalproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,10 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MainHolder> {
         mainHolder.name.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Intent intent = new Intent(Intent.ACTION_VIEW,)
+                Context context = v.getContext();
+                Intent intent = new Intent(context, Detail.class);
+                intent.putExtra("id",id[i]);
+                context.startActivity(intent);
             }
         });
     }
