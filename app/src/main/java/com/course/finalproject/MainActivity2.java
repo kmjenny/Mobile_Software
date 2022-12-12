@@ -16,8 +16,10 @@ import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,6 +36,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -58,6 +61,8 @@ public class MainActivity2 extends AppCompatActivity {
     public static int am;
     public static double calory;
     meal ml = new meal();
+
+    public static Uri uri2;
 
     private void readData(String name){
         InputStream is = getResources().openRawResource(R.raw.mealdb);
@@ -174,16 +179,26 @@ public class MainActivity2 extends AppCompatActivity {
             String review = this.review.getText().toString();
             String place = this.places.getText().toString();
             String time = this.time.getText().toString();
+            String image = this.uri2.toString();
+//            String image = getRealPathFromURI(uri2);
 
             am = Integer.parseInt(amount);
             readData(name);
             this.calory=ml.getCar();
 
             sqlDB = userDatabaseHelper.getWritableDatabase();
-            sqlDB.execSQL("INSERT INTO meallist VALUES (NULL,'" + date + "','" + time + "' , '" + name + "' , '" + am + "' , '" + calory*am + "' , '" + place + "', '" + review + "');");
+            sqlDB.execSQL("INSERT INTO meallist VALUES (NULL,'" + date + "','" + time + "' , '" + name + "' , '" + am + "' , '" + calory*am + "' , '" + place + "', '" + review + "', '" + image + "');");
             sqlDB.close();
             startActivity(intent2);
         });
+    }
+
+    public String getRealPathFromURI(Uri contentUri){
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(contentUri,proj,null,null,null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     @Override
@@ -210,6 +225,7 @@ public class MainActivity2 extends AppCompatActivity {
                         Intent intent = result.getData();
                         Log.e(TAG, "intent : " + intent);
                         Uri uri = intent.getData();
+                        uri2 = uri;
                         Log.e(TAG, "uri : " + uri);
 //                        imageview.setImageURI(uri);
                         Glide.with(MainActivity2.this)

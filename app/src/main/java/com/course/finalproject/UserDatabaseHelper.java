@@ -11,7 +11,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE meallist (_id INTEGER PRIMARY KEY AUTOINCREMENT," + "date String, time String, foodname String, amount int, calorie double, place String, comment String);");
+        db.execSQL("CREATE TABLE meallist (_id INTEGER PRIMARY KEY AUTOINCREMENT," + "date String, time String, foodname String, amount int, calorie double, place String, comment String, image String);");
     }
 
     @Override
